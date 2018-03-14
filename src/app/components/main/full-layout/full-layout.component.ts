@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+declare const $: any;
+
 @Component({
   selector: 'app-full-layout',
   templateUrl: './full-layout.component.html',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FullLayoutComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit() {
   }
 
+    isMobileMenu() {
+        if ($(window).width() > 991) {
+            return false;
+        }
+        return true;
+    };
 }

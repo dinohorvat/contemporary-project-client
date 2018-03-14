@@ -9,6 +9,7 @@ import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 import {SearchService} from './services/search.service';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -20,12 +21,14 @@ import {SearchService} from './services/search.service';
     BrowserModule,
     FormsModule,
     HttpModule,
+
+      HttpClientModule,
     ComponentsModule,
 RouterModule,
     AppRoutingModule
   ],
   providers: [
-    SearchService
+    SearchService,
   ],
   bootstrap: [AppComponent]
 })

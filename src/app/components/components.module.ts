@@ -9,6 +9,7 @@ import { SearchPageComponent } from './main/search-page/search-page.component';
 import {FullLayoutComponent} from './main/full-layout/full-layout.component';
 import { SearchResultsComponent } from './main/search-results/search-results.component';
 import { SearchDataComponent } from './main/search-data/search-data.component';
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -16,6 +17,7 @@ import { SearchDataComponent } from './main/search-data/search-data.component';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule
   ],
   declarations: [
     FooterComponent,

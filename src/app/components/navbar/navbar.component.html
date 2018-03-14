@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">About {{getNumResults()}} results</a>
+            <a class="navbar-brand">About {{getNumResults()}} results</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -15,13 +15,14 @@
                 <li>
                     <a class="dropdown-toggle">
                         <i class="material-icons">menu</i>
+                        <p class="hidden-lg hidden-md">Advance</p>
                     </a>
                 </li>
 
                 <li>
                     <a [routerLink]="['/search']" href="#pablo" class="dropdown-toggle">
-                       <i class="material-icons">home</i>
-                       <p class="hidden-lg hidden-md">Profile</p>
+                       <i class="material-icons">keyboard_return</i>
+                       <p class="hidden-lg hidden-md">Back</p>
                     </a>
                 </li>
             </ul>
