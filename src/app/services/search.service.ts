@@ -2,20 +2,23 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import 'rxjs/add/operator/toPromise';
+import {ResultDocumentModel} from '../model/ResultDocumentModel';
 
 @Injectable()
 export class SearchService {
 
   numResults = 0;
+  query: string;
   constructor(private http: HttpClient) { }
 
   public searchText(text: string){
     let url = environment.endpoint + "getDocs";
     return this.http.post(url, { query: text}).toPromise().then(result => {
       let res: any = result;
+      this.numResults = res.data.length;
       console.log(res);
-      return res;
-    }).catch(this.handleError);;
+      return res.data as ResultDocumentModel[];
+    }).catch(this.handleError);
   }
 
     private handleError(error: any): Promise<any> {

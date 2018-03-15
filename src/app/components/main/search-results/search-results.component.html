@@ -4,9 +4,9 @@
       <div class="col-md-12">
           <div *ngFor="let result of results" class="card results-cards">
               <div class="card-content">
-                  <h4 class="title"><b>Daily Sales {{result}}</b></h4>
-                  <p class="category"><b>Subtitle</b></p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras bibendum diam ac ex eleifend pretium. Nulla facilisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas lobortis, lorem et interdum gravida, metus dolor rhoncus libero, quis varius arcu odio vel ipsum. Aliquam sit amet interdum nisi, ac porta nisi. Phasellus rhoncus, ligula ac rhoncus faucibus, tellus dolor facilisis lorem, quis vulputate est ipsum quis augue. Aliquam vehicula fringilla ultricies. Nam ipsum eros, tincidunt id massa et, convallis porta velit. Suspendisse sit amet velit fringilla, facilisis tortor quis, pellentesque sapien. In ut ipsum semper, convallis libero et, ultrices nunc.</p>
+                  <h4 class="title"><b>{{result.attacktype1_txt}}</b></h4>
+                  <p class="category"><b>{{result.country_txt}} - {{result.city}}, {{result.location}}</b></p>
+                  <p>{{result.addnotes}}</p>
               </div>
           </div>
       </div>

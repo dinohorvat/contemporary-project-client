@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {SearchService} from '../../../services/search.service';
+import {ResultDocumentModel} from '../../../model/ResultDocumentModel';
 
 @Component({
   selector: 'app-search-results',
@@ -8,15 +9,21 @@ import {SearchService} from '../../../services/search.service';
 })
 export class SearchResultsComponent implements OnInit {
 
-  results: any[] = new Array();
+  results: ResultDocumentModel[] = new Array();
 
-  constructor(private searchService: SearchService) { }
+
+
+  constructor(private searchService: SearchService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
+      this.performSearch();
+  }
 
-    this.results = [1,2,3,4,5,6,7,8,9,10];
-    this.searchService.numResults = this.results.length;
-
+  public performSearch(){
+      Promise.resolve(this.searchService.searchText(this.searchService.query)).then(result => {
+          this.results = result;
+          this.cd.markForCheck();
+      });
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {SearchService} from '../../../services/search.service';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-search-page',
@@ -11,6 +12,7 @@ export class SearchPageComponent implements OnInit {
 
   text: string;
 
+
   constructor(private router: Router, private searchService: SearchService) { }
 
   ngOnInit() {
@@ -18,13 +20,11 @@ export class SearchPageComponent implements OnInit {
 
   public goSearch(){
     //search service call code here
-    if(this.text.length > 0){
+    if(!isNullOrUndefined(this.text) && this.text.length > 0){
 
-    Promise.resolve(this.searchService.searchText(this.text)).then(result => {
-      let res: any = result;
-      console.log(res);
-      this.router.navigate(['main'])
-    });
+
+    this.searchService.query = this.text;
+    this.router.navigate(['main'])
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import {Component, OnInit, ElementRef, ChangeDetectorRef} from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {SearchService} from '../../services/search.service';
@@ -14,7 +14,8 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(location: Location,  private element: ElementRef, private searchService: SearchService) {
+    constructor(location: Location,  private element: ElementRef, private searchService: SearchService,
+                private cd: ChangeDetectorRef) {
       this.location = location;
           this.sidebarVisible = false;
     }
@@ -52,6 +53,7 @@ export class NavbarComponent implements OnInit {
     };
 
     getNumResults(){
-      return this.searchService.numResults;
+     this.cd.markForCheck();
+     return this.searchService.numResults;
     }
 }
