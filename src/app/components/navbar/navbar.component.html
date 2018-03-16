@@ -21,7 +21,7 @@
 
                 <li>
                     <a [routerLink]="['/search']" href="#pablo" class="dropdown-toggle">
-                       <i class="material-icons">keyboard_return</i>
+                       <i class="material-icons">home</i>
                        <p class="hidden-lg hidden-md">Back</p>
                     </a>
                 </li>
@@ -29,10 +29,10 @@
 
             <form class="navbar-form navbar-right" role="search">
                 <div class="form-group form-black is-empty">
-                    <input type="text" class="form-control" size="60" placeholder="Search">
+                    <input type="text" name="query" [(ngModel)]="queryText" class="form-control" size="60" placeholder="Search">
                     <span class="material-input"></span>
                 </div>
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                <button type="submit" (click)="searchText()" class="btn btn-white btn-round btn-just-icon">
                     <i class="material-icons">search</i><div class="ripple-container"></div>
                 </button>
             </form>

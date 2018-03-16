@@ -10,6 +10,8 @@ import {FullLayoutComponent} from './main/full-layout/full-layout.component';
 import { SearchResultsComponent } from './main/search-results/search-results.component';
 import { SearchDataComponent } from './main/search-data/search-data.component';
 import {FormsModule} from '@angular/forms';
+import {DialogModule} from 'primeng/dialog';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -17,7 +19,9 @@ import {FormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    DialogModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     FooterComponent,

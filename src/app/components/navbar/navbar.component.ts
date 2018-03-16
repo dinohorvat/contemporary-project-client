@@ -2,6 +2,8 @@ import {Component, OnInit, ElementRef, ChangeDetectorRef} from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {SearchService} from '../../services/search.service';
+import {Router} from '@angular/router';
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-navbar',
@@ -13,9 +15,10 @@ export class NavbarComponent implements OnInit {
     location: Location;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    queryText: string;
 
     constructor(location: Location,  private element: ElementRef, private searchService: SearchService,
-                private cd: ChangeDetectorRef) {
+                private cd: ChangeDetectorRef, private router: Router) {
       this.location = location;
           this.sidebarVisible = false;
     }
@@ -55,5 +58,15 @@ export class NavbarComponent implements OnInit {
     getNumResults(){
      this.cd.markForCheck();
      return this.searchService.numResults;
+    }
+
+    searchText(){
+        console.log("tu");
+
+        if(!isNullOrUndefined(this.queryText) && this.queryText.length > 0){
+            console.log("tu tu tu");
+            this.searchService.query = this.queryText;
+            this.router.navigate(['main'])
+        }
     }
 }

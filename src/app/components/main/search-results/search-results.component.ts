@@ -1,15 +1,17 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {SearchService} from '../../../services/search.service';
 import {ResultDocumentModel} from '../../../model/ResultDocumentModel';
 
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.scss']
+  styleUrls: ['./search-results.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class SearchResultsComponent implements OnInit {
 
   results: ResultDocumentModel[] = new Array();
+  display: boolean = false;
 
 
 
@@ -25,5 +27,9 @@ export class SearchResultsComponent implements OnInit {
           this.cd.markForCheck();
       });
   }
+
+    showDialog() {
+        this.display = true;
+    }
 
 }
