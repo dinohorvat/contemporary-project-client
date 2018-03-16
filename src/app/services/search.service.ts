@@ -25,6 +25,15 @@ export class SearchService {
     }).catch(this.handleError);
   }
 
+  fetchDocument(eventid){
+      let url = environment.endpoint + "getDocument/"+eventid;
+      return this.http.get(url).toPromise().then(result => {
+          let res: any = result;
+          this.resultData = res.data;
+          return res.data as ResultDocumentModel[];
+      }).catch(this.handleError);
+  }
+
     blockUserInterface(): void {
         this.blockUI = true;
     }

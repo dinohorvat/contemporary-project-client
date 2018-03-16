@@ -30,8 +30,17 @@ export class SearchResultsComponent implements OnInit {
       });
   }
 
-    showDialog(result) {
-      this.selectedResult = result;
+    public getDocument(eventid){
+        this.searchService.blockUserInterface();
+        Promise.resolve(this.searchService.fetchDocument(eventid)).then(result => {
+            this.selectedResult = result;
+            this.searchService.unBlockUserInterface();
+            this.showDialog();
+            this.cd.markForCheck();
+        });
+    }
+
+    showDialog() {
       this.display = true;
     }
 

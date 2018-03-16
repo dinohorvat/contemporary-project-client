@@ -5,4 +5,5 @@ export class ResultDocumentModel{
     location: string;
     summary: string;
     addnotes: string;
+    eventid: string;
 }
