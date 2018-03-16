@@ -1,6 +1,5 @@
 <div class="main-content">
 
-    <!--<pagination-controls (pageChange)="p = $event"></pagination-controls>-->
     <div class="has-text-centered">
         <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
     </div>
@@ -19,8 +18,24 @@
         </div>
 
         <p-dialog header="{{selectedResult.attacktype1_txt}}" [(visible)]="display" modal="modal" [responsive]="true"
-                  [width]="350" [minWidth]="200" [minY]="70">
-            <span>{{selectedResult.summary}}</span>
+                  [width]="800" [minWidth]="200" [minY]="70">
+
+            <div class="row">
+                <div class="col-md-3"><p>Attack Type:</p></div>
+                <div class="col-md-9"><p>{{selectedResult.attacktype1_txt}}</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><p>Location:</p></div>
+                <div class="col-md-9"><p>{{selectedResult.country_txt}} - {{selectedResult.city}}, {{selectedResult.location}}</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><p>Summary:</p></div>
+                <div class="col-md-9"><p>{{selectedResult.summary}}</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><p>Note:</p></div>
+                <div class="col-md-9"><p>{{selectedResult.addnotes}}</p></div>
+            </div>
             <p-footer>
                 <button type="button" pButton icon="fa-close" (click)="display=false" label="Close"></button>
             </p-footer>

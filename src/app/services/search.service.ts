@@ -8,7 +8,7 @@ import {ResultDocumentModel} from '../model/ResultDocumentModel';
 export class SearchService {
 
     numResults = 0;
-    query: string;
+    query: string = "";
     blockUI: boolean = false;
     resultData: ResultDocumentModel[] = Array();
     timeElapsed: number = 0;
