@@ -9,7 +9,7 @@ export class SearchService {
 
   numResults = 0;
   query: string;
-
+  blockUI: boolean = false;
   resultData: ResultDocumentModel[] = Array();
 
   constructor(private http: HttpClient) { }
@@ -24,6 +24,14 @@ export class SearchService {
       return res.data as ResultDocumentModel[];
     }).catch(this.handleError);
   }
+
+    blockUserInterface(): void {
+        this.blockUI = true;
+    }
+
+    unBlockUserInterface(): void {
+        this.blockUI = false;
+    }
 
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);

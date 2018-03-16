@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SearchService} from '../../../services/search.service';
 
 declare const $: any;
 
@@ -10,7 +11,7 @@ declare const $: any;
 export class FullLayoutComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(public searchService:SearchService) { }
 
   ngOnInit() {
   }

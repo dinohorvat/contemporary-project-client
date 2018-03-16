@@ -22,9 +22,11 @@ export class SearchResultsComponent implements OnInit {
   }
 
   public performSearch(){
+      this.searchService.blockUserInterface();
       Promise.resolve(this.searchService.searchText(this.searchService.query)).then(result => {
           this.results = result;
           this.cd.markForCheck();
+          this.searchService.unBlockUserInterface();
       });
   }
 
