@@ -1,22 +1,31 @@
 <div class="main-content">
 
-  <div class="container-fluid">
-      <div class="col-md-12">
-          <div *ngFor="let result of getResultData()" class="card results-cards">
-              <div (click)="getDocument(result.eventid)" class="card-content">
-                  <h4 class="title"><b>{{result.attacktype1_txt}}</b></h4>
-                  <p class="category"><b>{{result.country_txt}} - {{result.city}}, {{result.location}}</b></p>
-                  <p>{{result.addnotes}}</p>
-              </div>
-          </div>
-      </div>
+    <!--<ul class="meal-list">-->
+        <!--<li *ngFor="let meal of meals | paginate: { itemsPerPage: 10, currentPage: page }">-->
+            <!--{{ meal }}-->
+        <!--</li>-->
+    <!--</ul>-->
+    <!--<div class="has-text-centered">-->
+        <!--<pagination-controls (pageChange)="page = $event"></pagination-controls>-->
+    <!--</div>-->
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div *ngFor="let result of getResultData()" class="card results-cards">
+                <div (click)="getDocument(result.eventid)" class="card-content">
+                    <h4 class="title"><b>{{result.attacktype1_txt}}</b></h4>
+                    <p class="category"><b>{{result.country_txt}} - {{result.city}}, {{result.location}}</b></p>
+                    <p>{{result.addnotes}}</p>
+                </div>
+            </div>
+        </div>
 
-      <p-dialog header="{{selectedResult.attacktype1_txt}}" [(visible)]="display" modal="modal" [responsive]="true" [width]="350" [minWidth]="200" [minY]="70">
-        <span>{{selectedResult.summary}}</span>
-          <p-footer>
-              <button type="button" pButton icon="fa-close" (click)="display=false" label="Close"></button>
-          </p-footer>
-      </p-dialog>
+        <p-dialog header="{{selectedResult.attacktype1_txt}}" [(visible)]="display" modal="modal" [responsive]="true"
+                  [width]="350" [minWidth]="200" [minY]="70">
+            <span>{{selectedResult.summary}}</span>
+            <p-footer>
+                <button type="button" pButton icon="fa-close" (click)="display=false" label="Close"></button>
+            </p-footer>
+        </p-dialog>
 
-  </div>
+    </div>
 </div>

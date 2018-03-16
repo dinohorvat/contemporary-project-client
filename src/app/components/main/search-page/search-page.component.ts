@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {SearchService} from '../../../services/search.service';
 import {isNullOrUndefined} from 'util';
@@ -13,7 +13,8 @@ export class SearchPageComponent implements OnInit {
   text: string;
 
 
-  constructor(private router: Router, private searchService: SearchService) { }
+  constructor(private router: Router, private searchService: SearchService,
+              private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
@@ -22,6 +23,13 @@ export class SearchPageComponent implements OnInit {
     //search service call code here
     if(!isNullOrUndefined(this.text) && this.text.length > 0){
     this.searchService.query = this.text;
+    this.searchService.blockUserInterface();
+
+    Promise.resolve(this.searchService.searchText(this.searchService.query)).then(result => {
+            this.searchService.unBlockUserInterface();
+            this.cd.markForCheck();
+
+        });
     this.router.navigate(['main'])
     }
   }

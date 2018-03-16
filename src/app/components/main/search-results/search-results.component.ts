@@ -18,16 +18,7 @@ export class SearchResultsComponent implements OnInit {
   constructor(private searchService: SearchService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-      this.performSearch();
-  }
-
-  public performSearch(){
-      this.searchService.blockUserInterface();
-      Promise.resolve(this.searchService.searchText(this.searchService.query)).then(result => {
-          this.results = result;
-          this.searchService.unBlockUserInterface();
-          this.cd.markForCheck();
-      });
+      console.log(this.searchService.resultData);
   }
 
     public getDocument(eventid){
