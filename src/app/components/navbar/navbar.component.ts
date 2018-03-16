@@ -61,12 +61,14 @@ export class NavbarComponent implements OnInit {
     }
 
     searchText(){
-        console.log("tu");
 
         if(!isNullOrUndefined(this.queryText) && this.queryText.length > 0){
             console.log("tu tu tu");
             this.searchService.query = this.queryText;
-            this.router.navigate(['main'])
+
+            Promise.resolve(this.searchService.searchText(this.searchService.query)).then(result => {
+                this.cd.markForCheck();
+            });
         }
     }
 }

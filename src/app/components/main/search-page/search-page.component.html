@@ -15,13 +15,13 @@
         <div class="input-group col-md-12">
           <input type="text" name="text" [(ngModel)]="text" class="form-control input-lg" placeholder="Search" />
           <span class="input-group-btn">
-                        <button (click)="goSearch()" class="btn btn-info btn-lg" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
+              <button (keyup.enter)="goSearch()" (click)="goSearch()" class="btn btn-info btn-lg" type="button">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
               <a [routerLink]="['/search']" href="#pablo" class="dropdown-toggle">
-              <i class="material-icons">menu</i>
-          </a>
-                    </span>
+                <i class="material-icons">menu</i>
+              </a>
+          </span>
         </div>
       </div>
     </div>

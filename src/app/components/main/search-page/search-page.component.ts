@@ -21,8 +21,6 @@ export class SearchPageComponent implements OnInit {
   public goSearch(){
     //search service call code here
     if(!isNullOrUndefined(this.text) && this.text.length > 0){
-
-
     this.searchService.query = this.text;
     this.router.navigate(['main'])
     }

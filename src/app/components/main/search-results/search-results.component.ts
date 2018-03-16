@@ -32,4 +32,8 @@ export class SearchResultsComponent implements OnInit {
         this.display = true;
     }
 
+    getResultData(){
+        return this.searchService.resultData;
+    }
+
 }
