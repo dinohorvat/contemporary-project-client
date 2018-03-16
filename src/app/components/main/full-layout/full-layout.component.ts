@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, DoCheck, OnInit} from '@angular/core';
 import {SearchService} from '../../../services/search.service';
 
 declare const $: any;
@@ -8,13 +8,16 @@ declare const $: any;
   templateUrl: './full-layout.component.html',
   styleUrls: ['./full-layout.component.scss']
 })
-export class FullLayoutComponent implements OnInit {
+export class FullLayoutComponent implements OnInit,DoCheck {
 
 
-  constructor(public searchService:SearchService) { }
+  constructor(public searchService:SearchService, private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
   }
+  ngDoCheck() {
+        this.ref.detectChanges();
+    }
 
     isMobileMenu() {
         if ($(window).width() > 991) {

@@ -12,7 +12,7 @@ export class SearchResultsComponent implements OnInit {
 
   results: ResultDocumentModel[] = new Array();
   display: boolean = false;
-
+  selectedResult: ResultDocumentModel = new ResultDocumentModel();
 
 
   constructor(private searchService: SearchService, private cd: ChangeDetectorRef) { }
@@ -25,13 +25,14 @@ export class SearchResultsComponent implements OnInit {
       this.searchService.blockUserInterface();
       Promise.resolve(this.searchService.searchText(this.searchService.query)).then(result => {
           this.results = result;
-          this.cd.markForCheck();
           this.searchService.unBlockUserInterface();
+          this.cd.markForCheck();
       });
   }
 
-    showDialog() {
-        this.display = true;
+    showDialog(result) {
+      this.selectedResult = result;
+      this.display = true;
     }
 
     getResultData(){
