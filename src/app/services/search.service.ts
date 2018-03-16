@@ -11,6 +11,7 @@ export class SearchService {
     query: string;
     blockUI: boolean = false;
     resultData: ResultDocumentModel[] = Array();
+    timeElapsed: number = 0;
 
     constructor(private http: HttpClient) {
     }

@@ -10,7 +10,7 @@ import {isNullOrUndefined} from 'util';
 })
 export class SearchPageComponent implements OnInit {
 
-  text: string;
+  text: string = "";
 
 
   constructor(private router: Router, private searchService: SearchService,
@@ -25,9 +25,13 @@ export class SearchPageComponent implements OnInit {
     this.searchService.query = this.text;
     this.searchService.blockUserInterface();
 
+    let startTime = (new Date).getTime();
     Promise.resolve(this.searchService.searchText(this.searchService.query)).then(result => {
-            this.searchService.unBlockUserInterface();
-            this.cd.markForCheck();
+        this.searchService.unBlockUserInterface();
+        this.cd.markForCheck();
+        let endTime = (new Date).getTime();
+
+        this.searchService.timeElapsed = endTime - startTime;
 
      });
     this.router.navigate(['main'])

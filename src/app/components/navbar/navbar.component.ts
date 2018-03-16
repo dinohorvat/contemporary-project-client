@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
     location: Location;
     private toggleButton: any;
     private sidebarVisible: boolean;
-    queryText: string;
+    queryText: string = this.searchService.query;
 
     constructor(location: Location,  private element: ElementRef, private searchService: SearchService,
                 private cd: ChangeDetectorRef, private router: Router) {
@@ -60,13 +60,22 @@ export class NavbarComponent implements OnInit {
      return this.searchService.numResults;
     }
 
-    searchText(){
+    getElapsedTime(){
+        this.cd.markForCheck();
+        return this.searchService.timeElapsed;
+    }
 
+    searchText(){
         if(!isNullOrUndefined(this.queryText) && this.queryText.length > 0){
-            console.log("tu tu tu");
+            let startTime = (new Date).getTime();
+
             this.searchService.query = this.queryText;
             this.searchService.blockUserInterface();
             Promise.resolve(this.searchService.searchText(this.searchService.query)).then(result => {
+                let endTime = (new Date).getTime();
+
+                this.searchService.timeElapsed = endTime - startTime;
+
                 this.searchService.unBlockUserInterface();
                 this.cd.markForCheck();
             });

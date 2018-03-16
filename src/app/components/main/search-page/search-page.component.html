@@ -16,7 +16,7 @@
         <div class="input-group col-md-12">
                 <input type="text" name="text" [(ngModel)]="text" class="form-control input-lg" placeholder="Search" />
                 <span class="input-group-btn">
-              <button type="submit" class="btn btn-info btn-lg">
+              <button [disabled]="text.length == 0" type="submit" class="btn btn-info btn-lg">
                 <i class="glyphicon glyphicon-search"></i>
               </button>
               <a [routerLink]="['/search']" href="#pablo" class="dropdown-toggle">
