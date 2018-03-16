@@ -29,8 +29,8 @@ export class SearchService {
       let url = environment.endpoint + "getDocument/"+eventid;
       return this.http.get(url).toPromise().then(result => {
           let res: any = result;
-          this.resultData = res.data;
-          return res.data as ResultDocumentModel[];
+          let document = res.data[0];
+          return document as ResultDocumentModel;
       }).catch(this.handleError);
   }
 
