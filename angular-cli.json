@@ -23,7 +23,8 @@
           "../node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
           "./assets/sass/material-dashboard.scss",
           "./assets/css/demo.css",
-          "../node_modules/primeng/resources/primeng.css"
+          "../node_modules/primeng/resources/primeng.css",
+        "../node_modules/primeng/resources/themes/omega/theme.css"
       ],
       "scripts": [
           "../node_modules/jquery/dist/jquery.js",

@@ -12,6 +12,7 @@ import { SearchDataComponent } from './main/search-data/search-data.component';
 import {FormsModule} from '@angular/forms';
 import {DialogModule} from 'primeng/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ButtonModule} from 'primeng/button';
 
 
 
@@ -21,6 +22,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     RouterModule,
     FormsModule,
     DialogModule,
+      ButtonModule,
     BrowserAnimationsModule
   ],
   declarations: [
