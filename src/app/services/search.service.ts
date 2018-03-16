@@ -26,6 +26,14 @@ export class SearchService {
         }).catch(this.handleError);
     }
 
+    public fetchPage(pageNum: number, text: string){
+        let url = environment.endpoint + 'getDocs/' + pageNum;
+        this.http.post(url, {query: text}).toPromise().then(result => {
+            let res: any = result;
+            this.resultData = res.data;
+        }).catch(this.handleError);
+    }
+
     fetchDocument(eventid) {
         let url = environment.endpoint + 'getDocument/' + eventid;
         return this.http.get(url).toPromise().then(result => {

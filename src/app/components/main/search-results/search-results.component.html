@@ -1,16 +1,15 @@
 <div class="main-content">
 
-    <!--<ul class="meal-list">-->
-        <!--<li *ngFor="let meal of meals | paginate: { itemsPerPage: 10, currentPage: page }">-->
-            <!--{{ meal }}-->
-        <!--</li>-->
-    <!--</ul>-->
-    <!--<div class="has-text-centered">-->
-        <!--<pagination-controls (pageChange)="page = $event"></pagination-controls>-->
-    <!--</div>-->
+    <!--<pagination-controls (pageChange)="p = $event"></pagination-controls>-->
+    <div class="has-text-centered">
+        <pagination-controls (pageChange)="getPage($event)" id="server"></pagination-controls>
+    </div>
+
     <div class="container-fluid">
         <div class="col-md-12">
-            <div *ngFor="let result of getResultData()" class="card results-cards">
+            <div *ngFor="let result of getResultData() | paginate: { id: 'server', itemsPerPage: 10,
+            currentPage: p, totalItems: getTotalCount() }"
+                 class="card results-cards">
                 <div (click)="getDocument(result.eventid)" class="card-content">
                     <h4 class="title"><b>{{result.attacktype1_txt}}</b></h4>
                     <p class="category"><b>{{result.country_txt}} - {{result.city}}, {{result.location}}</b></p>

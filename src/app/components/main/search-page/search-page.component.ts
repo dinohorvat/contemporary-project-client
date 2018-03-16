@@ -29,7 +29,7 @@ export class SearchPageComponent implements OnInit {
             this.searchService.unBlockUserInterface();
             this.cd.markForCheck();
 
-        });
+     });
     this.router.navigate(['main'])
     }
   }

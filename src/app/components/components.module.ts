@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 import {DialogModule} from 'primeng/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule} from 'primeng/button';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -23,7 +24,8 @@ import {ButtonModule} from 'primeng/button';
     FormsModule,
     DialogModule,
       ButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+      NgxPaginationModule
   ],
   declarations: [
     FooterComponent,

@@ -6,11 +6,11 @@ import {ResultDocumentModel} from '../../../model/ResultDocumentModel';
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
 export class SearchResultsComponent implements OnInit {
 
-  results: ResultDocumentModel[] = new Array();
+  p: number = 1;
   display: boolean = false;
   selectedResult: ResultDocumentModel = new ResultDocumentModel();
 
@@ -37,6 +37,22 @@ export class SearchResultsComponent implements OnInit {
 
     getResultData(){
         return this.searchService.resultData;
+    }
+
+    getPage(page: number){
+      console.log("num " + page);
+
+        this.searchService.blockUserInterface();
+        Promise.resolve(this.searchService.fetchPage(page, this.searchService.query)).then(result => {
+            this.searchService.unBlockUserInterface();
+            this.cd.markForCheck();
+            this.p = page;
+
+        });
+    }
+
+    public getTotalCount(){
+      return this.searchService.numResults;
     }
 
 }
