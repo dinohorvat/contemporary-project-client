@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {SearchService} from '../../../services/search.service';
 import {isNullOrUndefined} from 'util';
+import {AdvanceSearchModel} from '../../../model/AdvanceSearchModel';
 
 @Component({
   selector: 'app-search-page',
@@ -11,6 +12,9 @@ import {isNullOrUndefined} from 'util';
 export class SearchPageComponent implements OnInit {
 
   text: string = "";
+
+  displayAdvanceSearch = false;
+  advanceSearch: AdvanceSearchModel = new AdvanceSearchModel();
 
 
   constructor(private router: Router, private searchService: SearchService,

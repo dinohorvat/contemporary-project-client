@@ -36,7 +36,13 @@
                 <div class="col-md-3"><p>Note:</p></div>
                 <div class="col-md-9"><p>{{selectedResult.addnotes}}</p></div>
             </div>
+
+            <div class="row">
+                <div class="col-md-3"><p>Comments:</p></div>
+                <div class="col-md-9"><textarea [rows]="5" [cols]="60" [(ngModel)]="comments" pInputTextarea autoResize="autoResize"></textarea></div>
+            </div>
             <p-footer>
+                <button type="button" pButton icon="fa-send" (click)="display=false" label="Post Comment"></button>
                 <button type="button" pButton icon="fa-close" (click)="display=false" label="Close"></button>
             </p-footer>
         </p-dialog>

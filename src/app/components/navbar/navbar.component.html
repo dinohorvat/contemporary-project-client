@@ -17,14 +17,14 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li>
-                    <a class="dropdown-toggle">
+                    <a class="dropdown-toggle" style="cursor: pointer" (click)="displayAdvanceSearch=true">
                         <i class="material-icons">menu</i>
                         <p class="hidden-lg hidden-md">Advance</p>
                     </a>
                 </li>
 
                 <li>
-                    <a [routerLink]="['/search']" href="#pablo" class="dropdown-toggle">
+                    <a [routerLink]="['/search']" style="cursor: pointer" href="#pablo" class="dropdown-toggle">
                        <i class="material-icons">home</i>
                        <p class="hidden-lg hidden-md">Back</p>
                     </a>
@@ -43,3 +43,24 @@
         </div>
     </div>
 </nav>
+
+<p-dialog header="Advance Search" [(visible)]="displayAdvanceSearch" modal="modal" [responsive]="true"
+          [width]="350" [minWidth]="200" [minY]="70">
+
+    <div class="row">
+        <div class="col-md-3"><p>Longitude:</p></div>
+        <div class="col-md-9"><input name="longitude" [(ngModel)]="advanceSearch.longitude"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"><p>Latitude:</p></div>
+        <div class="col-md-9"><input name="latitude" [(ngModel)]="advanceSearch.latitude"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"><p>Radius:</p></div>
+        <div class="col-md-9"><input name="rad" [(ngModel)]="advanceSearch.radius"></div>
+    </div>
+    <p-footer>
+        <button type="button" pButton icon="fa-search" (click)="displayAdvanceSearch=false" label="Search"></button>
+        <button type="button" pButton icon="fa-close" (click)="displayAdvanceSearch=false" label="Close"></button>
+    </p-footer>
+</p-dialog>

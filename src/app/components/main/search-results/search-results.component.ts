@@ -1,6 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {SearchService} from '../../../services/search.service';
 import {ResultDocumentModel} from '../../../model/ResultDocumentModel';
+import {AdvanceSearchModel} from '../../../model/AdvanceSearchModel';
 
 @Component({
   selector: 'app-search-results',
@@ -13,6 +14,8 @@ export class SearchResultsComponent implements OnInit {
   p: number = 1;
   display: boolean = false;
   selectedResult: ResultDocumentModel = new ResultDocumentModel();
+
+  comments: string;
 
 
   constructor(private searchService: SearchService, private cd: ChangeDetectorRef) { }

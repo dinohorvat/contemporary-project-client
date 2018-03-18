@@ -4,6 +4,7 @@ import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common'
 import {SearchService} from '../../services/search.service';
 import {Router} from '@angular/router';
 import {isNullOrUndefined} from "util";
+import {AdvanceSearchModel} from '../../model/AdvanceSearchModel';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,9 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
     queryText: string = this.searchService.query;
+
+    displayAdvanceSearch = false;
+    advanceSearch: AdvanceSearchModel = new AdvanceSearchModel();
 
     constructor(location: Location,  private element: ElementRef, private searchService: SearchService,
                 private cd: ChangeDetectorRef, private router: Router) {

@@ -16,10 +16,10 @@
         <div class="input-group col-md-12">
                 <input type="text" name="text" [(ngModel)]="text" class="form-control input-lg" placeholder="Search" />
                 <span class="input-group-btn">
-              <button [disabled]="text.length == 0" type="submit" class="btn btn-info btn-lg">
+              <button [disabled]="text.length == 0"  type="submit" class="btn btn-info btn-lg">
                 <i class="glyphicon glyphicon-search"></i>
               </button>
-              <a [routerLink]="['/search']" href="#pablo" class="dropdown-toggle">
+              <a (click)="displayAdvanceSearch=true" style="cursor: pointer" class="dropdown-toggle">
                 <i class="material-icons">menu</i>
               </a>
           </span>
@@ -29,5 +29,28 @@
     </div>
     <div class="col-md-3"></div>
   </div>
+
+    <p-dialog header="Advance Search" [(visible)]="displayAdvanceSearch" modal="modal" [responsive]="true"
+              [width]="350" [minWidth]="200" [minY]="70">
+
+        <div class="row">
+            <div class="col-md-3"><p>Longitude:</p></div>
+            <div class="col-md-9"><input name="longitude" [(ngModel)]="advanceSearch.longitude"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"><p>Latitude:</p></div>
+            <div class="col-md-9"><input name="latitude" [(ngModel)]="advanceSearch.latitude"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"><p>Radius:</p></div>
+            <div class="col-md-9"><input name="rad" [(ngModel)]="advanceSearch.radius"></div>
+        </div>
+        <p-footer>
+            <button type="button" pButton icon="fa-search" (click)="displayAdvanceSearch=false" label="Search"></button>
+            <button type="button" pButton icon="fa-close" (click)="displayAdvanceSearch=false" label="Close"></button>
+        </p-footer>
+    </p-dialog>
 </div>
+
+
 
