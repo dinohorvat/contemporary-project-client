@@ -13,6 +13,7 @@ import {DialogModule} from 'primeng/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule} from 'primeng/button';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {TabViewModule} from 'primeng/tabview';
 
 
 
@@ -24,7 +25,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     DialogModule,
       ButtonModule,
     BrowserAnimationsModule,
-      NgxPaginationModule
+      NgxPaginationModule,
+      TabViewModule,
   ],
   declarations: [
     FooterComponent,

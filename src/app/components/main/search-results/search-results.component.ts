@@ -61,7 +61,7 @@ export class SearchResultsComponent implements OnInit {
       if(isNullOrUndefined(this.comments)){
           this.comments = [];
       }
-      this.comment.name = "Dino";
+
       this.comments.push(this.comment);
         this.searchService.blockUserInterface();
         let data = {
@@ -71,6 +71,7 @@ export class SearchResultsComponent implements OnInit {
         console.log(this.selectedResult);
         Promise.resolve(this.searchService.updateDocument(data)).then(result => {
             this.searchService.unBlockUserInterface();
+            this.comment = new Comment();
             this.cd.markForCheck();
         });
     }

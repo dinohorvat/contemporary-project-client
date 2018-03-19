@@ -20,37 +20,51 @@
         <p-dialog appendTo="body" header="{{selectedResult.attacktype1_txt}}" [(visible)]="display" modal="modal" [responsive]="true"
                   [width]="800" [minWidth]="200" [minY]="70">
 
-            <div class="row">
-                <div class="col-md-3"><p>Attack Type:</p></div>
-                <div class="col-md-9"><p>{{selectedResult.attacktype1_txt}}</p></div>
-            </div>
-            <div class="row">
-                <div class="col-md-3"><p>Location:</p></div>
-                <div class="col-md-9"><p>{{selectedResult.country_txt}} - {{selectedResult.city}}, {{selectedResult.location}}</p></div>
-            </div>
-            <div class="row">
-                <div class="col-md-3"><p>Summary:</p></div>
-                <div class="col-md-9"><p>{{selectedResult.summary}}</p></div>
-            </div>
-            <div class="row">
-                <div class="col-md-3"><p>Note:</p></div>
-                <div class="col-md-9"><p>{{selectedResult.addnotes}}</p></div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-3"><p>Comment:</p></div>
-                <div class="col-md-9"><textarea [rows]="5" [cols]="60" [(ngModel)]="comment.comment" pInputTextarea autoResize="autoResize"></textarea></div>
-            </div>
-            <div class="row">
-                <div class="col-md-3"><p>Comments:</p></div>
-                <div class="col-md-9">
-                    <div *ngFor="let comment of selectedResult.comments">
-                        <p>{{comment.comment}}</p>
+            <p-tabView>
+                <p-tabPanel header="Information" leftIcon="fa-info">
+                    <div class="row">
+                        <div class="col-md-3"><p>Attack Type:</p></div>
+                        <div class="col-md-9"><p>{{selectedResult.attacktype1_txt}}</p></div>
                     </div>
-                </div>
-            </div>
+                    <div class="row">
+                        <div class="col-md-3"><p>Location:</p></div>
+                        <div class="col-md-9"><p>{{selectedResult.country_txt}} - {{selectedResult.city}}, {{selectedResult.location}}</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"><p>Summary:</p></div>
+                        <div class="col-md-9"><p>{{selectedResult.summary}}</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"><p>Note:</p></div>
+                        <div class="col-md-9"><p>{{selectedResult.addnotes}}</p></div>
+                    </div>
+                </p-tabPanel>
+                <p-tabPanel header="Comments" leftIcon="fa-comments">
+                    <div class="row">
+                        <div class="col-md-3"><p>Comments:</p></div>
+                        <div class="col-md-9">
+                            <div *ngFor="let comment of selectedResult.comments">
+                                <p> <b><i>{{comment.name}} says: </i></b>{{comment.comment}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 3%">
+                        <div class="col-md-3"><p>Comment:</p></div>
+                        <div class="col-md-9">
+                            <div class="row" style="margin-bottom: 2%">
+                                <input id="input" placeholder="Username" type="text" size="58" pInputText [(ngModel)]="comment.name">
+                            </div>
+                            <div class="row">
+                                <textarea [rows]="5" placeholder="Write Comment" [cols]="60" [(ngModel)]="comment.comment" pInputTextarea autoResize="autoResize"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 2%">
+                        <button [disabled]="!comment.comment || !comment.name" (click)="saveComment()" type="button" pButton icon="fa-send" (click)="display=false" label="Post Comment"></button>
+                    </div>
+                </p-tabPanel>
+            </p-tabView>
             <p-footer>
-                <button [disabled]="!comment.comment" (click)="saveComment()" type="button" pButton icon="fa-send" (click)="display=false" label="Post Comment"></button>
                 <button type="button" pButton icon="fa-close" (click)="display=false" label="Close"></button>
             </p-footer>
         </p-dialog>
