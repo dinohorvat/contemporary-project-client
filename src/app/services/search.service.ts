@@ -44,6 +44,16 @@ export class SearchService {
         }).catch(this.handleError);
     }
 
+    updateDocument(document) {
+        let url = environment.endpoint + 'updateDocument';
+        return this.http.put(url,document).toPromise().then(result => {
+            let res: any = result;
+            alert(res.message);
+            console.log(res);
+            return 200;
+        }).catch(this.handleError);
+    }
+
     blockUserInterface(): void {
         this.blockUI = true;
     }

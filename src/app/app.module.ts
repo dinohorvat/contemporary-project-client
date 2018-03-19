@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import {SearchService} from './services/search.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {CommonModule} from '@angular/common';
 
 
 @NgModule({

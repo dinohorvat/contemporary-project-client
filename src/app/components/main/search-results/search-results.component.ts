@@ -1,7 +1,8 @@
 import {ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {SearchService} from '../../../services/search.service';
-import {ResultDocumentModel} from '../../../model/ResultDocumentModel';
+import {Comment, ResultDocumentModel} from '../../../model/ResultDocumentModel';
 import {AdvanceSearchModel} from '../../../model/AdvanceSearchModel';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-search-results',
@@ -15,8 +16,8 @@ export class SearchResultsComponent implements OnInit {
   display: boolean = false;
   selectedResult: ResultDocumentModel = new ResultDocumentModel();
 
-  comments: string;
-
+  comment: Comment = new Comment();
+  comments: any = [];
 
   constructor(private searchService: SearchService, private cd: ChangeDetectorRef) { }
 
@@ -28,6 +29,7 @@ export class SearchResultsComponent implements OnInit {
         this.searchService.blockUserInterface();
         Promise.resolve(this.searchService.fetchDocument(eventid)).then(result => {
             this.selectedResult = result;
+            console.log(this.selectedResult);
             this.searchService.unBlockUserInterface();
             this.showDialog();
             this.cd.markForCheck();
@@ -51,6 +53,25 @@ export class SearchResultsComponent implements OnInit {
             this.cd.markForCheck();
             this.p = page;
 
+        });
+    }
+
+    saveComment(){
+      this.comments = this.selectedResult.comments;
+      if(isNullOrUndefined(this.comments)){
+          this.comments = [];
+      }
+      this.comment.name = "Dino";
+      this.comments.push(this.comment);
+        this.searchService.blockUserInterface();
+        let data = {
+            id: this.selectedResult.eventid,
+            comments: this.comments
+        };
+        console.log(this.selectedResult);
+        Promise.resolve(this.searchService.updateDocument(data)).then(result => {
+            this.searchService.unBlockUserInterface();
+            this.cd.markForCheck();
         });
     }
 

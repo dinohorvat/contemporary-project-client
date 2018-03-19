@@ -6,4 +6,9 @@ export class ResultDocumentModel{
     summary: string;
     addnotes: string;
     eventid: string;
+    comments: Comment[];
+}
+export class Comment{
+    name: string;
+    comment: string;
 }

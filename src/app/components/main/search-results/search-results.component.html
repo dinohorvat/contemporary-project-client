@@ -38,11 +38,19 @@
             </div>
 
             <div class="row">
+                <div class="col-md-3"><p>Comment:</p></div>
+                <div class="col-md-9"><textarea [rows]="5" [cols]="60" [(ngModel)]="comment.comment" pInputTextarea autoResize="autoResize"></textarea></div>
+            </div>
+            <div class="row">
                 <div class="col-md-3"><p>Comments:</p></div>
-                <div class="col-md-9"><textarea [rows]="5" [cols]="60" [(ngModel)]="comments" pInputTextarea autoResize="autoResize"></textarea></div>
+                <div class="col-md-9">
+                    <div *ngFor="let comment of selectedResult.comments">
+                        <p>{{comment.comment}}</p>
+                    </div>
+                </div>
             </div>
             <p-footer>
-                <button type="button" pButton icon="fa-send" (click)="display=false" label="Post Comment"></button>
+                <button [disabled]="!comment.comment" (click)="saveComment()" type="button" pButton icon="fa-send" (click)="display=false" label="Post Comment"></button>
                 <button type="button" pButton icon="fa-close" (click)="display=false" label="Close"></button>
             </p-footer>
         </p-dialog>
