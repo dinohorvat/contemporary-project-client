@@ -36,9 +36,9 @@ export class SearchPageComponent implements OnInit {
         let endTime = (new Date).getTime();
 
         this.searchService.timeElapsed = endTime - startTime;
+        this.router.navigate(['main'])
 
      });
-    this.router.navigate(['main'])
     }
   }
 }

@@ -19,10 +19,18 @@ export class SearchResultsComponent implements OnInit {
   comment: Comment = new Comment();
   comments: any = [];
 
+  // G-MAP
+  options: any;
+  overlays: any[] = new Array();
+
+
   constructor(private searchService: SearchService, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-      console.log(this.searchService.resultData);
+      this.options = {
+          center: {lat: 36.890257, lng: 30.707417},
+          zoom: 1
+      };
   }
 
     public getDocument(eventid){
@@ -41,18 +49,16 @@ export class SearchResultsComponent implements OnInit {
     }
 
     getResultData(){
-        return this.searchService.resultData;
+      return this.searchService.resultData;
     }
 
     getPage(page: number){
-      console.log("num " + page);
-
         this.searchService.blockUserInterface();
         Promise.resolve(this.searchService.fetchPage(page, this.searchService.query)).then(result => {
-            this.searchService.unBlockUserInterface();
-            this.cd.markForCheck();
+            // console.log(result);
             this.p = page;
-
+            this.cd.markForCheck();
+            this.searchService.unBlockUserInterface();
         });
     }
 
@@ -80,4 +86,12 @@ export class SearchResultsComponent implements OnInit {
       return this.searchService.numResults;
     }
 
+    public getOverlays(){
+      return this.searchService.overlays;
+    }
+
+    public handleOverlayClick(event){
+      console.log(event.overlay);
+      this.getDocument(event.overlay.eventId);
+    }
 }

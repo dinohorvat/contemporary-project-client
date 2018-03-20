@@ -7,6 +7,8 @@ export class ResultDocumentModel{
     addnotes: string;
     eventid: string;
     comments: Comment[];
+    latitude: number;
+    longitude: number;
 }
 export class Comment{
     name: string;

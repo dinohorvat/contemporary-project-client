@@ -11,7 +11,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" [routerLink]="['']">
                 <i class="material-icons">home</i>
             </button>
-            <a class="navbar-brand" *ngIf="getNumResults() > 0">About {{getNumResults()}} results in {{getElapsedTime()}} ms.</a>
+            <a class="navbar-brand" *ngIf="getNumResults() > 0">Indexed {{getNumResults()}} results in {{getElapsedTime()}} ms.</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">

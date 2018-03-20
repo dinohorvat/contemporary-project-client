@@ -14,6 +14,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule} from 'primeng/button';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TabViewModule} from 'primeng/tabview';
+import {GMapModule} from 'primeng/gmap';
 
 
 
@@ -27,6 +28,7 @@ import {TabViewModule} from 'primeng/tabview';
     BrowserAnimationsModule,
       NgxPaginationModule,
       TabViewModule,
+      GMapModule
   ],
   declarations: [
     FooterComponent,

@@ -3,6 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import 'rxjs/add/operator/toPromise';
 import {ResultDocumentModel} from '../model/ResultDocumentModel';
+import {isNullOrUndefined} from 'util';
+
+declare var google;
 
 @Injectable()
 export class SearchService {
@@ -12,6 +15,9 @@ export class SearchService {
     blockUI: boolean = false;
     resultData: ResultDocumentModel[] = Array();
     timeElapsed: number = 0;
+
+    // G-MAP
+    overlays: any[] = new Array();
 
     constructor(private http: HttpClient) {
     }
@@ -23,15 +29,18 @@ export class SearchService {
             this.resultData = res.data;
             this.numResults = res.results;
             console.log(res);
+            this.setMapMarkers(res.data);
             return res.data as ResultDocumentModel[];
         }).catch(this.handleError);
     }
 
     public fetchPage(pageNum: number, text: string){
         let url = environment.endpoint + 'getDocs/' + pageNum;
-        this.http.post(url, {query: text}).toPromise().then(result => {
+        return this.http.post(url, {query: text}).toPromise().then(result => {
             let res: any = result;
             this.resultData = res.data;
+            this.setMapMarkers(res.data);
+            return res;
         }).catch(this.handleError);
     }
 
@@ -64,5 +73,14 @@ export class SearchService {
 
     private handleError(error: any): Promise<any> {
         return Promise.reject(error.message || error);
+    }
+
+    public setMapMarkers(dataPoints: any[]){
+        this.overlays = new Array();
+
+        for(let idx=0; idx<dataPoints.length; idx++){
+            this.overlays.push(new google.maps.Marker({position: {lat: dataPoints[idx].latitude,
+                    lng: dataPoints[idx].longitude}, title:dataPoints[idx].attacktype1_txt, eventId: dataPoints[idx].eventid}))
+        }
     }
 }
