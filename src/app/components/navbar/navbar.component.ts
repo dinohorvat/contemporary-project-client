@@ -5,6 +5,7 @@ import {SearchService} from '../../services/search.service';
 import {Router} from '@angular/router';
 import {isNullOrUndefined} from "util";
 import {AdvanceSearchModel} from '../../model/AdvanceSearchModel';
+import {LocationModel} from '../../model/LocationModel';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +18,7 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
     queryText: string = this.searchService.query;
+    area: LocationModel;
 
     displayAdvanceSearch = false;
     advanceSearch: AdvanceSearchModel = new AdvanceSearchModel();
@@ -58,6 +60,18 @@ export class NavbarComponent implements OnInit {
             this.sidebarClose();
         }
     };
+
+    getArea(){
+        this.area = new LocationModel();
+        this.area.lat = this.advanceSearch.latitude;
+        this.area.long = this.advanceSearch.longitude;
+        this.area.radius = this.advanceSearch.radius;
+        Promise.resolve(this.searchService.fetchArea(this.area).then(res =>{
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        }));
+    }
 
     getNumResults(){
      this.cd.markForCheck();

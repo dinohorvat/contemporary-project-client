@@ -60,7 +60,7 @@
         <div class="col-md-9"><input name="rad" [(ngModel)]="advanceSearch.radius"></div>
     </div>
     <p-footer>
-        <button type="button" pButton icon="fa-search" (click)="displayAdvanceSearch=false" label="Search"></button>
+        <button type="button" pButton icon="fa-search" (click)="getArea(); displayAdvanceSearch=false" label="Search"></button>
         <button type="button" pButton icon="fa-close" (click)="displayAdvanceSearch=false" label="Close"></button>
     </p-footer>
 </p-dialog>

@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment';
 import 'rxjs/add/operator/toPromise';
 import {ResultDocumentModel} from '../model/ResultDocumentModel';
 import {isNullOrUndefined} from 'util';
+import {LocationModel} from '../model/LocationModel';
 
 declare var google;
 
@@ -31,6 +32,21 @@ export class SearchService {
             console.log(res);
             this.setMapMarkers(res.data);
             return res.data as ResultDocumentModel[];
+        }).catch(this.handleError);
+    }
+    public fetchArea(location: LocationModel){
+        let url = environment.endpoint + 'getArea';
+        return this.http.post(url, location).toPromise().then(result => {
+            let res: any = result;
+            return res;
+        }).catch(this.handleError);
+    }
+
+    public fetchAreaPage(location: LocationModel, pageNum: number){
+        let url = environment.endpoint + 'getArea/' + pageNum;
+        return this.http.post(url, location).toPromise().then(result => {
+            let res: any = result;
+            return res;
         }).catch(this.handleError);
     }
 
