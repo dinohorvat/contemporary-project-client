@@ -1,4 +1,4 @@
-##Mongo Web Client Application - ISTE 438
+## Mongo Web Client Application - ISTE 438
 
 This project is part of the ISTE 438 course, and represents an online search client for a Mongo DB dataset.
 The dataset is a collection of all the registered crimes, classified as terrorist attacks. Mongo web client enables the user to access this dataset by connecting to the, custom made, remotely deployed Node JS server.
