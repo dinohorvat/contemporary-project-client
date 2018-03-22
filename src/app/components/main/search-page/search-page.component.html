@@ -11,7 +11,7 @@
     <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-        <form (submit)="goSearch()">
+        <form (submit)="querySearch()">
         <div id="custom-search-input">
         <div class="input-group col-md-12">
                 <input type="text" name="text" [(ngModel)]="text" class="form-control input-lg" placeholder="Search" />
@@ -30,7 +30,7 @@
     <div class="col-md-3"></div>
   </div>
 
-    <p-dialog header="Advance Search" [(visible)]="displayAdvanceSearch" modal="modal" [responsive]="true"
+    <p-dialog appendTo="body" header="Advance Search" [(visible)]="displayAdvanceSearch" modal="modal" [responsive]="true"
               [width]="350" [minWidth]="200" [minY]="70">
 
         <div class="row">
@@ -46,7 +46,7 @@
             <div class="col-md-9"><input name="rad" [(ngModel)]="advanceSearch.radius"></div>
         </div>
         <p-footer>
-            <button type="button" pButton icon="fa-search" (click)="displayAdvanceSearch=false" label="Search"></button>
+            <button type="button" pButton icon="fa-search" (click)="searchArea()" label="Search"></button>
             <button type="button" pButton icon="fa-close" (click)="displayAdvanceSearch=false" label="Close"></button>
         </p-footer>
     </p-dialog>

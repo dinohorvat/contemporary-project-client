@@ -54,12 +54,21 @@ export class SearchResultsComponent implements OnInit {
 
     getPage(page: number){
         this.searchService.blockUserInterface();
-        Promise.resolve(this.searchService.fetchPage(page, this.searchService.query)).then(result => {
-            // console.log(result);
-            this.p = page;
-            this.cd.markForCheck();
-            this.searchService.unBlockUserInterface();
-        });
+
+        if(!this.searchService.geoSearch){
+            Promise.resolve(this.searchService.fetchPage(page, this.searchService.query)).then(result => {
+                // console.log(result);
+                this.p = page;
+                this.cd.markForCheck();
+                this.searchService.unBlockUserInterface();
+            });
+        }else {
+            Promise.resolve(this.searchService.fetchAreaPage(this.searchService.geoQuery, page)).then(result => {
+                this.p = page;
+                this.cd.markForCheck();
+                this.searchService.unBlockUserInterface();
+            });
+        }
     }
 
     saveComment(){
@@ -92,6 +101,8 @@ export class SearchResultsComponent implements OnInit {
 
     public handleOverlayClick(event){
       console.log(event.overlay);
-      this.getDocument(event.overlay.eventId);
+      if(!isNullOrUndefined(event.overlay.eventId)){
+          this.getDocument(event.overlay.eventId);
+      }
     }
 }

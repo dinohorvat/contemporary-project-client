@@ -1,6 +1,6 @@
 
 export class AdvanceSearchModel{
-    longitude: number;
-    latitude: number;
-    radius: number;
+    longitude: string;
+    latitude: string;
+    radius: string;
 }

@@ -17,6 +17,9 @@ export class SearchService {
     resultData: ResultDocumentModel[] = Array();
     timeElapsed: number = 0;
 
+    geoQuery: LocationModel = new LocationModel();
+    geoSearch: boolean = false;
+
     // G-MAP
     overlays: any[] = new Array();
 
@@ -38,6 +41,11 @@ export class SearchService {
         let url = environment.endpoint + 'getArea';
         return this.http.post(url, location).toPromise().then(result => {
             let res: any = result;
+            this.resultData = res.data;
+            this.numResults = res.results;
+            this.setMapMarkers(res.data);
+            this.setRadius(location.lat, location.long, location.radius);
+
             return res;
         }).catch(this.handleError);
     }
@@ -46,6 +54,9 @@ export class SearchService {
         let url = environment.endpoint + 'getArea/' + pageNum;
         return this.http.post(url, location).toPromise().then(result => {
             let res: any = result;
+            this.resultData = res.data;
+            this.setMapMarkers(res.data);
+            this.setRadius(location.lat, location.long, location.radius);
             return res;
         }).catch(this.handleError);
     }
@@ -98,5 +109,11 @@ export class SearchService {
             this.overlays.push(new google.maps.Marker({position: {lat: dataPoints[idx].latitude,
                     lng: dataPoints[idx].longitude}, title:dataPoints[idx].attacktype1_txt, eventId: dataPoints[idx].eventid}))
         }
+    }
+
+    public setRadius(lat: number, lon: number, rad: number){
+        console.log("tu");
+        this.overlays.push(new google.maps.Circle({center: {lat: lat, lng: lon},
+            fillColor: '#1976D2', fillOpacity: 0.35, strokeWeight: 1, radius: rad}))
     }
 }

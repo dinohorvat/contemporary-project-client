@@ -63,11 +63,20 @@ export class NavbarComponent implements OnInit {
 
     getArea(){
         this.area = new LocationModel();
-        this.area.lat = this.advanceSearch.latitude;
-        this.area.long = this.advanceSearch.longitude;
-        this.area.radius = this.advanceSearch.radius;
+        this.area.lat = parseFloat(this.advanceSearch.latitude);
+        this.area.long = parseFloat(this.advanceSearch.longitude);
+        this.area.radius = parseFloat(this.advanceSearch.radius);
+
+        this.searchService.geoSearch = true;
+        this.searchService.geoQuery = this.area;
+
+        let startTime = (new Date).getTime();
+
+
         Promise.resolve(this.searchService.fetchArea(this.area).then(res =>{
             console.log(res);
+            let endTime = (new Date).getTime();
+            this.searchService.timeElapsed = endTime - startTime;
         }).catch(err => {
             console.log(err);
         }));
@@ -85,6 +94,9 @@ export class NavbarComponent implements OnInit {
 
     searchText(){
         if(!isNullOrUndefined(this.queryText) && this.queryText.length > 0){
+
+            this.searchService.geoSearch = false;
+
             let startTime = (new Date).getTime();
 
             this.searchService.query = this.queryText;
