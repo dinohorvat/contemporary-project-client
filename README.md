@@ -8,3 +8,6 @@ Summary describes what the terrorist attack was about.
 
 Also, the user is able to perform GeoSpatial Queries over specified longitude, latitude and radius. 
 In both cases results of the query are presented on Google Maps, but if the search was GeoSpatial than there is a certain circle surrounding all the results which denotes that all of the found documents are within specified requirements.
+
+## Client Application URL
+http://dinohorvat.com/dev/contemp/main
