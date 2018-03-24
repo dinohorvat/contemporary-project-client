@@ -10,6 +10,7 @@ import {SearchResultsComponent} from './components/main/search-results/search-re
 
 
 const routes: Routes =[
+    { path: '',               redirectTo: 'search', pathMatch: 'full' },
     { path: 'search',      component: SearchPageComponent },
     { path: 'main',   component: FullLayoutComponent, children: [
             {path: '', component: SearchResultsComponent},
@@ -20,7 +21,6 @@ const routes: Routes =[
     // { path: 'maps',           component: MapsComponent },
     // { path: 'notifications',  component: NotificationsComponent },
     // { path: 'upgrade',        component: UpgradeComponent },
-    { path: '',               redirectTo: 'search', pathMatch: 'full' }
 ];
 
 @NgModule({
